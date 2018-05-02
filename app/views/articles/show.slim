@@ -1,0 +1,10 @@
+.row
+  .col-12
+    h2
+      | #{@article.title}
+      span = @article.category
+      .btn-group.pull-right
+        a.btn.pull-left href=articles_path Back
+        a.btn.pull-left href=edit_article_path(@article) Edit
+
+    p = @article.content

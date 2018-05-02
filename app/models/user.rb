@@ -4,20 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :articles
   before_create :set_default_role
 
-  ROLES = %w(admin editor vanilla guest).freeze
-
-  def admin?
-    role == "admin"
-  end
+  ROLES = %w(admin editor guest).freeze
 
   def editor?
     role == "editor"
   end
 
-  def vanilla?
-    role == "vanilla"
+  def admin?
+    %w(admin editor).include?(role)
   end
 
   private

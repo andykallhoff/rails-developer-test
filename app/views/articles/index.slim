@@ -1,0 +1,23 @@
+.row
+  .col-12
+    h2
+      | Listing Articles
+      .btn-group.pull-right
+        a.btn.pull-left href=new_article_path Create
+
+    table.table.table-striped.published
+      thead
+        tr
+          th Title
+          th Category
+          th
+      tbody
+        - @articles.each do |article|
+          tr
+            td = article.title
+            td = article.category
+            td
+              .btn-group
+                a.pull-left href=article_path(article) View
+                a.pull-left href=edit_article_path(article) Edit
+                a.pull-left href=article_path(article) data-method="delete" Delete

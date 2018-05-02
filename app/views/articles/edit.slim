@@ -1,0 +1,11 @@
+.row
+  .col-12
+    h2
+      | Editing Article
+      span = @article.title
+      .btn-group.pull-right
+        a.btn.pull-left href=articles_path Cancel
+
+.row
+  .col-6
+    = render 'form'

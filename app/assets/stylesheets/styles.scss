@@ -13,6 +13,11 @@ $section-shadow: 0 5px 10px #e9eaf3;
 
 
 //--- GENERAL ---//
+.body-container {
+  padding: 15px 25px;
+}
+.pull-left { float: left !important; }
+.pull-right { float: right !important; }
 i {
   margin: 8px 0;
   color: #999;

@@ -9,4 +9,8 @@ html
   body
     = render "layouts/header"
     .body-container
+      - if flash.any?
+        .row
+          .col-12
+            = render 'layouts/flash'
       = yield
