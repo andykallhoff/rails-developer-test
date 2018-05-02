@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
   def set_current_user
     @current_user = current_user
   end
+
+  private
+    def after_sign_out_path_for(resource_or_scope)
+      root_path
+    end
 end

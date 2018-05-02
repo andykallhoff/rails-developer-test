@@ -11,6 +11,8 @@ gem 'pundit'
 gem 'slim'
 gem 'slim-rails'
 gem 'html2slim'
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -4,6 +4,6 @@ class PagesController < ApplicationController
   def index
   end
 
-  def sign_in_register
+  def registration_sign_in
   end
 end

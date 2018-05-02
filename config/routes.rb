@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
 
-  get 'sign-in', to: 'pages#sign_in_register', as: :sign_in
-  get 'register', to: 'pages#sign_in_register', as: :register
+  get 'registration-sign-in', to: 'pages#registration_sign_in', as: :registration_sign_in
   root to: 'pages#index'
 end
