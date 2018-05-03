@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    %w(admin editor).include?(role)
+    role == "admin"
   end
 
   private

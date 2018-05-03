@@ -5,19 +5,23 @@
       .btn-group.pull-right
         a.btn.pull-left href=new_article_path Create
 
-    table.table.table-striped.published
-      thead
-        tr
-          th Title
-          th Category
-          th
-      tbody
-        - @articles.each do |article|
+.row
+  - @articles.group_by{|a| a.category}.each do |category, articles|
+    .col-lg-4
+      h5 = category.titleize
+      table.table.table-striped.published
+        thead
           tr
-            td = article.title
-            td = article.category
-            td
-              .btn-group
-                a.pull-left href=article_path(article) View
-                a.pull-left href=edit_article_path(article) Edit
-                a.pull-left href=article_path(article) data-method="delete" Delete
+            th Title
+            th Category
+            th
+        tbody
+          - articles.each do |article|
+            tr
+              td = article.title
+              td = article.category
+              td
+                .btn-group
+                  a.pull-left href=article_path(article) View
+                  a.pull-left href=edit_article_path(article) Edit
+                  a.pull-left href=article_path(article) data-method="delete" Delete
