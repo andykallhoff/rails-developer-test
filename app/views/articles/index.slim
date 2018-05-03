@@ -21,7 +21,12 @@
               td = article.title
               td = article.category
               td
-                .btn-group
-                  a.pull-left href=article_path(article) View
-                  a.pull-left href=edit_article_path(article) Edit
-                  a.pull-left href=article_path(article) data-method="delete" Delete
+                .btn-group.pull-right
+                  - if policy(article).show?
+                    a.pull-left href=article_path(article) View
+                  - else
+                    a.pull-left href=registration_sign_in_path View
+                  - if policy(article).edit?
+                    a.pull-left href=edit_article_path(article) Edit
+                  - if policy(article).destroy?
+                    a.pull-left href=article_path(article) data-method="delete" Delete

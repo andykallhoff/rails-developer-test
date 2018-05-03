@@ -121,20 +121,11 @@ h1 {
     border: 1px solid !important;
     border-radius: 3px !important;
     color: $blue;
-
-    &.btn-solid {
-      background: $blue;
-      color: #fff;
-
-      &:hover {
-        background: $teal;
-      }
-    }
-
-    .btn-icon {
-      width: 24px;
-      margin: -14px 0 0 -2px;
-    }
+  }
+}
+td {
+  a {
+    margin-right: 5px;
   }
 }
 input[type='submit'] {

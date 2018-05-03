@@ -1,10 +1,14 @@
 class ArticlesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  #before_action :authorize_user
+  before_action :authorize_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Article::CATEGORIES
-    @articles = Article.all
+    if current_user
+      @articles = Article.all
+    else
+      @articles = Article::CATEGORIES.map{|c| Article.category(c).limit(3)}.flatten!
+    end
   end
 
   def show
@@ -12,10 +16,12 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    authorize @article
   end
 
   def create
     @article = current_user.articles.new(article_params)
+    authorize @article
 
     if @article.save
       redirect_to article_path(@article), notice: "Article was successfully created."
@@ -49,7 +55,7 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:user_id, :title, :content, :category)
     end
 
-    def authorize_user
-      authorize current_user
+    def authorize_article
+      authorize Article.find(params[:id])
     end
 end

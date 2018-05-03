@@ -9,7 +9,7 @@ header
         a.nav-item.nav-link class=('active' if request.fullpath == articles_path) href=articles_path Articles
         - if current_user
           - if current_user.admin?
-            a.nav-item.nav-link class=('active' if request.fullpath == users_path) href=admin_users_path Users
+            a.nav-item.nav-link class=('active' if request.fullpath == admin_users_path) href=admin_users_path Users
           a.nav-item.nav-link.sign-in href=destroy_user_session_path data-method="delete" Sign Out
         - else
           a.nav-item.nav-link.sign-in href=registration_sign_in_path Sign In / Register
