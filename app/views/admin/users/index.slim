@@ -1,0 +1,22 @@
+.row
+  .col-12
+    h2
+      | Listing Users
+      .btn-group.pull-right
+        a.btn.pull-left href=new_admin_user_path Create
+
+    table.table.table-striped.published
+      thead
+        tr
+          th Email
+          th Role
+          th
+      tbody
+        - @users.each do |user|
+          tr
+            td = user.email
+            td = user.role
+            td
+              .btn-group
+                a.pull-left href=edit_admin_user_path(user) Edit
+                a.pull-left href=admin_user_path(user) data-method="delete" Delete
