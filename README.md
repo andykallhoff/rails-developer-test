@@ -10,6 +10,9 @@
 - `rake db:migrate`
 - `rake db:seed`
 - `rails s`
+- *seed data logins*
+- login emails: `guest@test.com` `editor@test.com` `admin@test.com`
+- login password: `thisisapass`
 
 ### Notes
 Sorry it took so long, couldn't work over the weekend to complete it as something came up.
