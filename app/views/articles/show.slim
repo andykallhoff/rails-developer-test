@@ -5,6 +5,7 @@
       span = @article.category
       .btn-group.pull-right
         a.btn.pull-left href=articles_path Back
-        a.btn.pull-left href=edit_article_path(@article) Edit
+        - if policy(@article).edit?
+          a.btn.pull-left href=edit_article_path(@article) Edit
 
     p = @article.content

@@ -3,7 +3,8 @@
     h2
       | Listing Articles
       .btn-group.pull-right
-        a.btn.pull-left href=new_article_path Create
+        - if current_user && (current_user.admin? || current_user.editor?)
+          a.btn.pull-left href=new_article_path Create
 
 .row
   - @articles.group_by{|a| a.category}.each do |category, articles|

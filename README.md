@@ -1,3 +1,23 @@
+# About
+- Ruby 2.3.3
+- Rails 5.1.6
+- Database: SQLite3
+
+## Setting Up
+- *get the repo, cd into that directory*
+- `bundle`
+- `rake db:create`
+- `rake db:migrate`
+- `rake db:seed`
+- `rails s`
+
+### Notes
+Sorry it took so long, couldn't work over the weekend to complete it as something came up.
+
+I did not add a `categories` table because in the description it only listed and `articles` table, although I think ideally categories would be its own table. Also I wasn't sure how much "styling" you would be looking for, so I just made it presentable, nothing special by any means.
+
+-------
+
 # Simple News App - Rails Competency Test
 To get started please fork this project and carefully read the following instructions.
 

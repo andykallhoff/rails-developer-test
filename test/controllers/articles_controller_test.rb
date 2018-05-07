@@ -110,23 +110,23 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     describe "if article's user is not this user" do
       test "should NOT get edit" do
         diff_article = articles(:funny)
-        assert_raises(Pundit::NotAuthorizedError) do
-          get edit_article_url(diff_article)
-        end
+        get edit_article_url(diff_article)
+        assert_equal 'You are not authorized to perform that action.', flash[:error]
+        assert_redirected_to root_url
       end
 
       test "should NOT update article" do
         diff_article = articles(:funny)
-        assert_raises(Pundit::NotAuthorizedError) do
-          patch article_url(diff_article), params: {article: { title: 'Updated Title' }}
-        end
+        patch article_url(diff_article), params: {article: { title: 'Updated Title' }}
+        assert_equal 'You are not authorized to perform that action.', flash[:error]
+        assert_redirected_to root_url
       end
 
       test "should NOT delete article" do
         diff_article = articles(:funny)
-        assert_raises(Pundit::NotAuthorizedError) do
-          delete article_url(diff_article)
-        end
+        delete article_url(diff_article)
+        assert_equal 'You are not authorized to perform that action.', flash[:error]
+        assert_redirected_to root_url
       end
     end
   end
@@ -150,36 +150,36 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "should NOT get new" do
-      assert_raises(Pundit::NotAuthorizedError) do
-        get new_article_url
-      end
+      get new_article_url
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
 
     test "should NOT create article" do
-      assert_raises(Pundit::NotAuthorizedError) do
-        post articles_url, params: { article: { title: 'TitleTest', category: 'curious', content: 'testing content', user_id: @guest.id } }
-      end
+      post articles_url, params: { article: { title: 'TitleTest', category: 'curious', content: 'testing content', user_id: @guest.id } }
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
 
     test "should NOT get edit" do
       diff_article = articles(:funny)
-      assert_raises(Pundit::NotAuthorizedError) do
-        get edit_article_url(diff_article)
-      end
+      get edit_article_url(diff_article)
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
 
     test "should NOT update article" do
       diff_article = articles(:funny)
-      assert_raises(Pundit::NotAuthorizedError) do
-        patch article_url(diff_article), params: {article: { title: 'Updated Title' }}
-      end
+      patch article_url(diff_article), params: {article: { title: 'Updated Title' }}
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
 
     test "should NOT delete article" do
       diff_article = articles(:funny)
-      assert_raises(Pundit::NotAuthorizedError) do
-        delete article_url(diff_article)
-      end
+      delete article_url(diff_article)
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
   end
 
