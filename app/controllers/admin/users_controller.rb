@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
   before_action :authorize_user
 
   def index
@@ -17,8 +17,7 @@ class Admin::UsersController < Admin::ApplicationController
     if @user.save(user_params)
       redirect_to admin_users_path, notice: "User was successfully created."
     else
-      binding.pry
-      render :edit, notice: "Oops, the user was not saved."
+      render :new, notice: "Oops, the user was not saved."
     end
   end
 
@@ -27,16 +26,6 @@ class Admin::UsersController < Admin::ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to admin_users_path, notice: "User was updated"
-    else
-      render :edit
-    end
-  end
-
-  def update_role
-    return unless params.try(:[], :user).try(:[], :role)
-
-    if @user.update(role: params[:user][:role])
       redirect_to admin_users_path, notice: "User was successfully updated."
     else
       render :edit

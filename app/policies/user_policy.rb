@@ -3,10 +3,6 @@ class UserPolicy < ApplicationPolicy
     @user.admin?
   end
 
-  def show?
-    index?
-  end
-
   def new?
     index?
   end
