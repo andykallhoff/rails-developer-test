@@ -17,4 +17,10 @@ class UserTest < ActiveSupport::TestCase
     refute user.valid?
     assert_not_nil user.errors[:email]
   end
+
+  test 'validates user roles' do
+    user = User.new(email: '2@test.com', password: '1234567890', password_confirmation: '1234567890', role: 'demigod')
+    refute user.valid?
+    assert_not_nil user.errors[:role]
+  end
 end

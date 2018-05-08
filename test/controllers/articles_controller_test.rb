@@ -22,42 +22,37 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
-    test "should get new" do
+    test "should NOT get new" do
       get new_article_url
-      assert_response :success
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
 
-    test "should create article" do
+    test "should NOT create article" do
       post articles_url, params: { article: { title: 'TitleTest', category: 'curious', content: 'testing content', user_id: @admin.id } }
-      assert_equal 'Article was successfully created.', flash[:notice]
-      assert_redirected_to article_url(Article.first)
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
 
-    test "should render new if creating article has errors" do
-      post articles_url, params: { article: { title: nil, category: 'curious', content: 'testing content', user_id: @admin.id } }
-      assert_template :new
+    test "should NOT get edit" do
+      diff_article = articles(:funny)
+      get edit_article_url(diff_article)
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
 
-    test "should get edit" do
-      get edit_article_url(@article)
-      assert_response :success
+    test "should NOT update article" do
+      diff_article = articles(:funny)
+      patch article_url(diff_article), params: {article: { title: 'Updated Title' }}
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
 
-    test "should update article" do
-      patch article_url(@article), params: {article: { title: 'Updated Title' }}
-      assert_equal 'Article was successfully updated.', flash[:notice]
-      assert_redirected_to article_url(@article)
-    end
-
-    test "should render edit if updating article has errors" do
-      patch article_url(@article), params: {article: { category: nil }}
-      assert_template :edit
-    end
-
-    test "should delete article" do
-      delete article_url(@article)
-      assert_equal 'Article was deleted.', flash[:notice]
-      assert_redirected_to articles_url
+    test "should NOT delete article" do
+      diff_article = articles(:funny)
+      delete article_url(diff_article)
+      assert_equal 'You are not authorized to perform that action.', flash[:error]
+      assert_redirected_to root_url
     end
   end
 
@@ -90,6 +85,11 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to article_url(Article.first)
     end
 
+    test "should render new if creating article has errors" do
+      post articles_url, params: { article: { title: nil, category: 'curious', content: 'testing content', user_id: @editor.id } }
+      assert_template :new
+    end
+
     test "should get edit" do
       get edit_article_url(@article)
       assert_response :success
@@ -99,6 +99,11 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
       patch article_url(@article), params: {article: { title: 'Updated Title' }}
       assert_equal 'Article was successfully updated.', flash[:notice]
       assert_redirected_to article_url(@article)
+    end
+
+    test "should render edit if updating article has errors" do
+      patch article_url(@article), params: {article: { category: nil }}
+      assert_template :edit
     end
 
     test "should delete article" do

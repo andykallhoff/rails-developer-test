@@ -8,6 +8,11 @@ editor:
   encrypted_password: <%= encrypted_password %>
   role: 'editor'
 
+editor_two:
+  email: 'editor_two@example.com'
+  encrypted_password: <%= encrypted_password %>
+  role: 'editor'
+
 admin:
   email: 'admin@example.com'
   encrypted_password: <%= encrypted_password %>

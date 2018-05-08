@@ -8,6 +8,7 @@ class User < ApplicationRecord
   before_create :set_default_role
 
   ROLES = %w(admin editor guest).freeze
+  validates :role, inclusion: { in: ROLES, message: "That is not a valid role." }
 
   def editor?
     role == "editor"

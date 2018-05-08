@@ -33,4 +33,11 @@ class ArticleTest < ActiveSupport::TestCase
     refute article.valid?
     assert_not_nil article.errors[:user]
   end
+
+  test 'validates article categories' do
+    user = users(:editor)
+    article = Article.new(user: user, title: 'title', category: 'hilarious', content: 'derp')
+    refute article.valid?
+    assert_not_nil article.errors[:category]
+  end
 end

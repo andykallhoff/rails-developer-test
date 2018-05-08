@@ -19,7 +19,8 @@ class UserPolicy < ApplicationPolicy
     index?
   end
 
-  def destroy?
-    index?
-  end
+  #Unsure if we want this
+  #def destroy?
+  #  index?
+  #end
 end

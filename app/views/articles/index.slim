@@ -3,7 +3,7 @@
     h2
       | Listing Articles
       .btn-group.pull-right
-        - if current_user && (current_user.admin? || current_user.editor?)
+        - if current_user && current_user.editor?
           a.btn.pull-left href=new_article_path Create
 
 .row

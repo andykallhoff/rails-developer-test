@@ -4,7 +4,7 @@ curious:
   category: 'curious'
   content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
 funny:
-  user: admin
+  user: editor_two
   title: 'funny title'
   category: 'funny'
   content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'

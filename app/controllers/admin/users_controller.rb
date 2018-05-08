@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update]
   before_action :authorize_user
 
   def index
@@ -32,10 +32,11 @@ class Admin::UsersController < Admin::ApplicationController
     end
   end
 
-  def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: "The user was deleted."
-  end
+  #Unsure if we want this
+  #def destroy
+  #  @user.destroy
+  #  redirect_to admin_users_path, notice: "The user was deleted."
+  #end
 
   private
     def set_user

@@ -49,11 +49,12 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
       assert_template :edit
     end
 
-    test "should delete user" do
-      delete admin_user_url(@user)
-      assert_equal 'The user was deleted.', flash[:notice]
-      assert_redirected_to admin_users_url
-    end
+    #Unsure if we want this
+    #test "should delete user" do
+    #  delete admin_user_url(@user)
+    #  assert_equal 'The user was deleted.', flash[:notice]
+    #  assert_redirected_to admin_users_url
+    #end
   end
 
   #--- LOGGED IN AS A NON-ADMIN
@@ -94,10 +95,11 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to root_url
     end
 
-    test "should delete user" do
-      delete admin_user_url(@user)
-      assert_equal 'You are not authorized for that area of the site.', flash[:error]
-      assert_redirected_to root_url
-    end
+    #Again unsure
+    #test "should delete user" do
+    #  delete admin_user_url(@user)
+    #  assert_equal 'You are not authorized for that area of the site.', flash[:error]
+    #  assert_redirected_to root_url
+    #end
   end
 end
